@@ -3,10 +3,10 @@ using namespace vex;
 extern brain Brain;
 
 // VEXcode devices
-extern distance Distance7;
+extern distance Distance10;
 extern motor Motor9;
 extern controller Controller1;
-extern distance Distance6;
+extern distance Distance1;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

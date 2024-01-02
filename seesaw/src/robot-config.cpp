@@ -8,10 +8,10 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
-distance Distance7 = distance(PORT7);
-motor Motor9 = motor(PORT9, ratio18_1, true);
+distance Distance10 = distance(PORT10);
+motor Motor9 = motor(PORT7, ratio18_1, true);
 controller Controller1 = controller(primary);
-distance Distance6 = distance(PORT6);
+distance Distance1 = distance(PORT1);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
