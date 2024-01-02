@@ -20,6 +20,11 @@
 
 using namespace vex;
 
+void pid(double valp,double vali, double vald) {
+  Motor9.spin(forward,(valp*-1.3+vali*.001+vald*25)-Motor9.position(degrees)*.7,pct);
+}
+
+
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -32,7 +37,9 @@ int main() {
     Controller1.Screen.clearScreen();
     
     
-    
+    if(Distance1.objectDistance(inches)>30||Distance10.objectDistance(inches)>30) {
+      //Controller1.rumble(rumbleLong);
+    }
       
     
     double doublep=0;
@@ -40,7 +47,10 @@ int main() {
     
     double p = Distance1.objectDistance(inches)-Distance10.objectDistance(inches);
 
-    doublep = Motor9.position(degrees)*.2-p;
+    
+
+
+    doubled = (Distance1.objectVelocity()-Distance10.objectVelocity())/2;
 
 
     Controller1.Screen.setCursor(1,1);
@@ -48,14 +58,15 @@ int main() {
     Controller1.Screen.setCursor(2,1);
     Controller1.Screen.print(Motor9.position(degrees));
     Controller1.Screen.setCursor(3,1);
-    Controller1.Screen.print(doublep);
+    Controller1.Screen.print(doubled);
 
     if(fabs(Motor9.position(degrees))<50) {
-    Motor9.spin(forward,doublep*.1,pct);//+doublep*.2+i*.001,pct);
+    pid(p,0,doubled);//+doublep*.2+i*.001,pct);
     }
     else
     {
-      Motor9.spin(forward,-Motor9.position(degrees)/5,pct);//+doublep*.2+i*.001,pct);
+      Motor9.spin(forward,0,pct);//+doublep*.2+i*.001,pct);
+      //Motor9.spin(forward,-Motor9.position(degrees)*.01,pct);//+doublep*.2+i*.001,pct);
     }
     perr3=perr2;
     perr2=perr;
