@@ -12,6 +12,7 @@ distance Distance10 = distance(PORT10);
 motor Motor9 = motor(PORT7, ratio18_1, true);
 controller Controller1 = controller(primary);
 distance Distance1 = distance(PORT1);
+potV2 sense = potV2(Brain.ThreeWirePort.A);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

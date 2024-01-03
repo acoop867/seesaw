@@ -14,6 +14,7 @@
 // Motor9               motor         7               
 // Controller1          controller                    
 // Distance1            distance      1               
+// sense                potV2         A               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -21,7 +22,7 @@
 using namespace vex;
 
 void pid(double valp,double vali, double vald) {
-  Motor9.spin(forward,(valp*-1.3+vali*.001+vald*25)-Motor9.position(degrees)*.7,pct);
+  Motor9.spin(forward,(valp*-1.3+vali*.001+vald*25)-.4*(sense.angle(degrees)-70),pct);
 }
 
 
@@ -56,18 +57,14 @@ int main() {
     Controller1.Screen.setCursor(1,1);
     Controller1.Screen.print(p);
     Controller1.Screen.setCursor(2,1);
-    Controller1.Screen.print(Motor9.position(degrees));
+    Controller1.Screen.print(sense.angle(degrees));
     Controller1.Screen.setCursor(3,1);
     Controller1.Screen.print(doubled);
 
-    if(fabs(Motor9.position(degrees))<50) {
-    pid(p,0,doubled);//+doublep*.2+i*.001,pct);
-    }
-    else
-    {
-      Motor9.spin(forward,0,pct);//+doublep*.2+i*.001,pct);
-      //Motor9.spin(forward,-Motor9.position(degrees)*.01,pct);//+doublep*.2+i*.001,pct);
-    }
+    
+    //pid(p,0,doubled);//+doublep*.2+i*.001,pct);
+    pid(0,0,0);
+   
     perr3=perr2;
     perr2=perr;
    
